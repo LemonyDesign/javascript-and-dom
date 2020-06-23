@@ -50,6 +50,7 @@ const createColour = colourMode => {
 // On click attach 1 event
 // newColours.onclick = () => addRandomColourToBg();
 let colourMode = "light";
+document.body.style.backgroundColor = createColour(colourMode);
 
 const newColours = document.querySelector("#new-colours");
 newColours.className = "btn";
