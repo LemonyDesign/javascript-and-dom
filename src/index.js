@@ -21,12 +21,12 @@ document.body.appendChild(heading);
 
 const generateDarkColourValue = () => {
   const min = Math.ceil(0);
-  const max = Math.floor(50);
+  const max = Math.floor(100);
   return Math.floor(Math.random() * (max - min) + min);
 };
 
 const generateLightColourValue = () => {
-  const min = Math.ceil(200);
+  const min = Math.ceil(150);
   const max = Math.floor(256);
   return Math.floor(Math.random() * (max - min) + min);
 };
@@ -89,3 +89,24 @@ const addRandomColourToBg = () => {
 newColours.addEventListener("click", addRandomColourToBg);
 
 setColourMode();
+
+// setTimeout happens once
+
+// use js expression in setTimeout,
+// do not run the function in setTimeout
+
+// const log = () => console.log("in timeout");
+// setTimeout(log, 1000);
+
+// setTimeout doesn't stop other stuff running
+// use setTimemout inside promise resolve:
+
+// function timeout(time) {
+//   return new Promise(resolve => setTimeout(resolve, time));
+// }
+// await timeout(5000);
+
+// setInterval happens over and over
+const interval = setInterval(addRandomColourToBg, 2000);
+// clear interval to stop interval firing
+newColours.addEventListener("click", () => clearInterval(interval));
