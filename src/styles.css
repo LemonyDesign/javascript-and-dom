@@ -2,6 +2,11 @@ body {
   font-family: sans-serif;
   transition: background-color 1s ease-in;
 }
+h1,
+h2,
+label {
+  transition: color 1s ease-in;
+}
 
 .btn {
   display: inline-block;
@@ -14,7 +19,6 @@ body {
   color: #000;
   text-align: center;
   background-color: #eee;
-  outline: none;
   transition: all 0.2s;
 }
 .btn:hover {

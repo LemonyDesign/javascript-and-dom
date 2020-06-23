@@ -56,17 +56,21 @@ const newColours = document.querySelector("#new-colours");
 newColours.className = "btn";
 
 const radios = document.querySelectorAll("input[name='mode']");
+const labels = document.querySelectorAll("label");
 
 const setColourMode = () => {
   radios.forEach(radio =>
     radio.addEventListener("click", event => {
       colourMode = event.target.value;
       addRandomColourToBg(event.target.value);
+
       if (event.target.value === "dark") {
+        labels.forEach(label => (label.style.color = "white"));
         heading.style.color = "white";
         logo.style.color = "white";
       }
       if (event.target.value === "light") {
+        labels.forEach(label => (label.style.color = "black"));
         heading.style.color = "black";
         logo.style.color = "black";
       }
