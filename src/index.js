@@ -7,39 +7,80 @@ console.log(document.body);
 //https://developer.mozilla.org/en-US/docs/Web/API/Document#Methods
 
 const logo = document.querySelector("#logo");
-logo.textContent = "hiya";
+logo.textContent = "Company Logo";
 
 const heading = document.createElement("h2");
-heading.innerHTML = "<span>hi</span> " + document.URL;
-console.log(heading);
+heading.innerHTML = "Character set <span>" + document.charset + "</span>";
 
-// Node
+// Nodes
 // https://developer.mozilla.org/en-US/docs/Web/API/Node
 
 document.body.appendChild(heading);
-console.log(document.URL);
 
 // Node, Element, Attribute - of current web page (document.)
 
-// Generate random colour rgb 0-255
-// Uses single responsibility functions
+const generateDarkColourValue = () => {
+  const min = Math.ceil(0);
+  const max = Math.floor(100);
+  return Math.floor(Math.random() * (max - min) + min);
+};
 
-const generateColourValue = () => Math.floor(Math.random() * 256);
+const generateLightColourValue = () => {
+  const min = Math.ceil(150);
+  const max = Math.floor(256);
+  return Math.floor(Math.random() * (max - min) + min);
+};
 
-const createColour = () => {
-  const red = generateColourValue();
-  const green = generateColourValue();
-  const blue = generateColourValue();
+const createColour = colourMode => {
+  let red, green, blue;
+  if (colourMode === "dark") {
+    red = generateDarkColourValue();
+    green = generateDarkColourValue();
+    blue = generateLightColourValue();
+  }
+  if (colourMode === "light") {
+    red = generateLightColourValue();
+    green = generateLightColourValue();
+    blue = generateLightColourValue();
+  }
   return `rgb(${red}, ${green}, ${blue})`;
 };
 
-// Apply to DOM
+// Events
+// On click attach 1 event
+// newColours.onclick = () => addRandomColourToBg();
+let colourMode = "light";
+
+const newColours = document.querySelector("#new-colours");
+newColours.className = "btn";
+
+const radios = document.querySelectorAll("input[name='mode']");
+
+const setColourMode = () => {
+  radios.forEach(radio =>
+    radio.addEventListener("click", event => {
+      colourMode = event.target.value;
+      addRandomColourToBg(event.target.value);
+      if (event.target.value === "dark") {
+        heading.style.color = "white";
+        logo.style.color = "white";
+      }
+      if (event.target.value === "light") {
+        heading.style.color = "black";
+        logo.style.color = "black";
+      }
+    })
+  );
+};
+
 const applyColourToBody = colour =>
   (document.body.style.backgroundColor = colour);
 
 const addRandomColourToBg = () => {
-  const colour = createColour();
+  const colour = createColour(colourMode);
   return applyColourToBody(colour);
 };
 
-addRandomColourToBg();
+newColours.addEventListener("click", addRandomColourToBg);
+
+setColourMode();
