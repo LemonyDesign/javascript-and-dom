@@ -21,12 +21,12 @@ document.body.appendChild(heading);
 
 const generateDarkColourValue = () => {
   const min = Math.ceil(0);
-  const max = Math.floor(100);
+  const max = Math.floor(50);
   return Math.floor(Math.random() * (max - min) + min);
 };
 
 const generateLightColourValue = () => {
-  const min = Math.ceil(150);
+  const min = Math.ceil(200);
   const max = Math.floor(256);
   return Math.floor(Math.random() * (max - min) + min);
 };
@@ -36,7 +36,7 @@ const createColour = colourMode => {
   if (colourMode === "dark") {
     red = generateDarkColourValue();
     green = generateDarkColourValue();
-    blue = generateLightColourValue();
+    blue = generateDarkColourValue();
   }
   if (colourMode === "light") {
     red = generateLightColourValue();
