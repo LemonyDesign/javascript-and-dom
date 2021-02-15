@@ -7,9 +7,6 @@
         },
         {
           "id": "codesandbox.tests"
-        },
-        {
-          "id": "codesandbox.console"
         }
       ]
     },
@@ -17,6 +14,9 @@
       "views": [
         {
           "id": "codesandbox.problems"
+        },
+        {
+          "id": "codesandbox.console"
         }
       ]
     }
